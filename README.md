@@ -80,6 +80,16 @@ cd services/customer_service
 bundle exec rspec
 ```
 
+Frontend:
+```bash
+cd apps/web
+npm test
+```
+
+Notas de pruebas:
+- Hay pruebas de integración HTTP con un servidor local embebido (Order -> Customer).
+- La prueba de RabbitMQ se salta automáticamente si el broker no está disponible.
+
 ## Notas Windows
 Si ves warnings de `VIPS` al ejecutar Rails o RSpec, son módulos opcionales de
 `image_processing` en Windows. No afectan la ejecución del API. Puedes

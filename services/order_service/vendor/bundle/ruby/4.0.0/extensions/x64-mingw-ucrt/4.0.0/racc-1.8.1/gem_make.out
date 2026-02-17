@@ -1,0 +1,19 @@
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/order_service/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+C:/Ruby40-x64/bin/ruby.exe extconf.rb
+creating Makefile
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/order_service/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make -j23 DESTDIR\= sitearchdir\=./.gem.20260217-16240-iw0szs sitelibdir\=./.gem.20260217-16240-iw0szs clean
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/order_service/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make -j23 DESTDIR\= sitearchdir\=./.gem.20260217-16240-iw0szs sitelibdir\=./.gem.20260217-16240-iw0szs
+generating cparse-x64-mingw-ucrt.def
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/order_service/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make -j23 DESTDIR\= sitearchdir\=./.gem.20260217-16240-iw0szs sitelibdir\=./.gem.20260217-16240-iw0szs install
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20260217-16240-iw0szs/racc
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/order_service/vendor/bundle/ruby/4.0.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20260217-16240-iw0szs sitelibdir\=./.gem.20260217-16240-iw0szs clean

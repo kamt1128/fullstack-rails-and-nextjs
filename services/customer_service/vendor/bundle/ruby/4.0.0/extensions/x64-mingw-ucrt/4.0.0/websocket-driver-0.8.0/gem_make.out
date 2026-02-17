@@ -1,0 +1,19 @@
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/customer_service/vendor/bundle/ruby/4.0.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+C:/Ruby40-x64/bin/ruby.exe extconf.rb
+creating Makefile
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/customer_service/vendor/bundle/ruby/4.0.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+make -j23 DESTDIR\= sitearchdir\=./.gem.20260217-9344-mro3i4 sitelibdir\=./.gem.20260217-9344-mro3i4 clean
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/customer_service/vendor/bundle/ruby/4.0.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+make -j23 DESTDIR\= sitearchdir\=./.gem.20260217-9344-mro3i4 sitelibdir\=./.gem.20260217-9344-mro3i4
+generating websocket_mask-x64-mingw-ucrt.def
+compiling websocket_mask.c
+linking shared-object websocket_mask.so
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/customer_service/vendor/bundle/ruby/4.0.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+make -j23 DESTDIR\= sitearchdir\=./.gem.20260217-9344-mro3i4 sitelibdir\=./.gem.20260217-9344-mro3i4 install
+/usr/bin/install -c -m 0755 websocket_mask.so ./.gem.20260217-9344-mro3i4
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/customer_service/vendor/bundle/ruby/4.0.0/gems/websocket-driver-0.8.0/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20260217-9344-mro3i4 sitelibdir\=./.gem.20260217-9344-mro3i4 clean

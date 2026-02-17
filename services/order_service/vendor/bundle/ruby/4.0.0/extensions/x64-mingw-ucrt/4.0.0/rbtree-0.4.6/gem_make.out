@@ -1,0 +1,39 @@
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/order_service/vendor/bundle/ruby/4.0.0/gems/rbtree-0.4.6
+C:/Ruby40-x64/bin/ruby.exe extconf.rb
+checking for ruby/version.h... yes
+checking for rb_exec_recursive() in ruby.h... yes
+checking for rb_exec_recursive_paired() in ruby.h... yes
+checking for rb_proc_lambda_p() in ruby.h... yes
+checking for rb_ary_resize() in ruby.h... yes
+checking for rb_obj_hide() in ruby.h... yes
+checking for rb_safe_level() in ruby.h... no
+checking for rb_cData() in ruby.h... no
+creating Makefile
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/order_service/vendor/bundle/ruby/4.0.0/gems/rbtree-0.4.6
+make -j23 DESTDIR\= sitearchdir\=./.gem.20260217-16240-miglln sitelibdir\=./.gem.20260217-16240-miglln clean
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/order_service/vendor/bundle/ruby/4.0.0/gems/rbtree-0.4.6
+make -j23 DESTDIR\= sitearchdir\=./.gem.20260217-16240-miglln sitelibdir\=./.gem.20260217-16240-miglln
+generating rbtree-x64-mingw-ucrt.def
+compiling dict.c
+compiling rbtree.c
+rbtree.c: In function 'rbtree_alloc':
+rbtree.c:194:5: warning: 'rb_data_object_wrap_warning' is deprecated: by TypedData [-Wdeprecated-declarations]
+  194 |     VALUE rbtree = Data_Wrap_Struct(klass, rbtree_mark, rbtree_free, NULL);
+      |     ^~~~~
+In file included from C:/Ruby40-x64/include/ruby-4.0.0/ruby/internal/core.h:27,
+                 from C:/Ruby40-x64/include/ruby-4.0.0/ruby/ruby.h:29,
+                 from C:/Ruby40-x64/include/ruby-4.0.0/ruby.h:38,
+                 from rbtree.c:5:
+C:/Ruby40-x64/include/ruby-4.0.0/ruby/internal/core/rdata.h:296:1: note: declared here
+  296 | rb_data_object_wrap_warning(VALUE klass, void *ptr, RUBY_DATA_FUNC mark, RUBY_DATA_FUNC free)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+linking shared-object rbtree.so
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/order_service/vendor/bundle/ruby/4.0.0/gems/rbtree-0.4.6
+make -j23 DESTDIR\= sitearchdir\=./.gem.20260217-16240-miglln sitelibdir\=./.gem.20260217-16240-miglln install
+/usr/bin/install -c -m 0755 rbtree.so ./.gem.20260217-16240-miglln
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/order_service/vendor/bundle/ruby/4.0.0/gems/rbtree-0.4.6
+make DESTDIR\= sitearchdir\=./.gem.20260217-16240-miglln sitelibdir\=./.gem.20260217-16240-miglln clean

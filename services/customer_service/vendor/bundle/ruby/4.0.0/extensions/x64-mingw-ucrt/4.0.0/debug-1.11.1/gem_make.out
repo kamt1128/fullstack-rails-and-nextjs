@@ -1,0 +1,20 @@
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/customer_service/vendor/bundle/ruby/4.0.0/gems/debug-1.11.1/ext/debug
+C:/Ruby40-x64/bin/ruby.exe extconf.rb
+creating Makefile
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/customer_service/vendor/bundle/ruby/4.0.0/gems/debug-1.11.1/ext/debug
+make -j23 DESTDIR\= sitearchdir\=./.gem.20260217-9344-gvq6oq sitelibdir\=./.gem.20260217-9344-gvq6oq clean
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/customer_service/vendor/bundle/ruby/4.0.0/gems/debug-1.11.1/ext/debug
+make -j23 DESTDIR\= sitearchdir\=./.gem.20260217-9344-gvq6oq sitelibdir\=./.gem.20260217-9344-gvq6oq
+generating debug-x64-mingw-ucrt.def
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/customer_service/vendor/bundle/ruby/4.0.0/gems/debug-1.11.1/ext/debug
+make -j23 DESTDIR\= sitearchdir\=./.gem.20260217-9344-gvq6oq sitelibdir\=./.gem.20260217-9344-gvq6oq install
+/usr/bin/install -c -m 0755 debug.so ./.gem.20260217-9344-gvq6oq/debug
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/customer_service/vendor/bundle/ruby/4.0.0/gems/debug-1.11.1/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20260217-9344-gvq6oq sitelibdir\=./.gem.20260217-9344-gvq6oq clean

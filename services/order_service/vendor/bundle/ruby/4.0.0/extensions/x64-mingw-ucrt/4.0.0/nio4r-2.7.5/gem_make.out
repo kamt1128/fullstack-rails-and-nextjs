@@ -1,0 +1,18 @@
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/order_service/vendor/bundle/ruby/4.0.0/gems/nio4r-2.7.5/ext/nio4r
+C:/Ruby40-x64/bin/ruby.exe extconf.rb
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/order_service/vendor/bundle/ruby/4.0.0/gems/nio4r-2.7.5/ext/nio4r
+make -j23 DESTDIR\= sitearchdir\=./.gem.20260217-16240-dmgwff sitelibdir\=./.gem.20260217-16240-dmgwff clean
+make: *** No hay ninguna regla para construir el objetivo 'clean'.  Alto.
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/order_service/vendor/bundle/ruby/4.0.0/gems/nio4r-2.7.5/ext/nio4r
+make -j23 DESTDIR\= sitearchdir\=./.gem.20260217-16240-dmgwff sitelibdir\=./.gem.20260217-16240-dmgwff
+make: No se hace nada para 'all'.
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/order_service/vendor/bundle/ruby/4.0.0/gems/nio4r-2.7.5/ext/nio4r
+make -j23 DESTDIR\= sitearchdir\=./.gem.20260217-16240-dmgwff sitelibdir\=./.gem.20260217-16240-dmgwff install
+make: No se hace nada para 'install'.
+
+current directory: C:/Users/kamt1/Desktop/prueba-ruby-on-rails-next/services/order_service/vendor/bundle/ruby/4.0.0/gems/nio4r-2.7.5/ext/nio4r
+make DESTDIR\= sitearchdir\=./.gem.20260217-16240-dmgwff sitelibdir\=./.gem.20260217-16240-dmgwff clean
+make: *** No hay ninguna regla para construir el objetivo 'clean'.  Alto.

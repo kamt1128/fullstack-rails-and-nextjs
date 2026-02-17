@@ -1,6 +1,29 @@
 require "rails_helper"
 
 RSpec.describe "Customers API", type: :request do
+  it "returns customers list" do
+    first = Customer.create!(customer_name: "Ana Morales", address: "Av. Siempre Viva 123")
+    Customer.create!(customer_name: "Carlos Perez", address: "Calle Luna 456")
+
+    get "/customers"
+
+    expect(response).to have_http_status(:ok)
+    body = JSON.parse(response.body)
+    expect(body["data"]).to be_an(Array)
+    expect(body["data"].map { |item| item["id"] }).to include(first.id)
+  end
+
+  it "filters customers by id or name" do
+    target = Customer.create!(customer_name: "Lucia Gomez", address: "Av. Norte 90")
+    Customer.create!(customer_name: "Marco Ruiz", address: "Calle Sur 12")
+
+    get "/customers", params: { q: "Lucia" }
+
+    expect(response).to have_http_status(:ok)
+    body = JSON.parse(response.body)
+    expect(body["data"].map { |item| item["id"] }).to eq([target.id])
+  end
+
   it "returns customer details" do
     customer = Customer.create!(customer_name: "Ana Morales", address: "Av. Siempre Viva 123")
 

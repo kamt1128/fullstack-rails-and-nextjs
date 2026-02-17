@@ -66,6 +66,7 @@ npm run dev
 
 Variables recomendadas:
 - `NEXT_PUBLIC_ORDER_API_URL` (default `http://localhost:3001`)
+- `NEXT_PUBLIC_CUSTOMER_API_URL` (default `http://localhost:3002`)
 
 ## Pruebas
 Order Service:
@@ -104,4 +105,5 @@ Order Service:
 - `GET /orders?customer_id=1&page=1&per_page=20`
 
 Customer Service:
+- `GET /customers`
 - `GET /customers/:id`

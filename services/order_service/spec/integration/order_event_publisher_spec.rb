@@ -23,7 +23,14 @@ RSpec.describe OrderEventPublisher do
     order = Order.create!(customer_id: 1, product_name: "Monitor", quantity: 1, price: 199.99, status: "created")
     described_class.publish_order_created(order)
 
-    _delivery_info, _properties, payload = queue.pop(true)
+    payload = nil
+    deadline = Time.now + 5
+    while Time.now < deadline && payload.nil?
+      _delivery_info, _properties, body = queue.pop
+      payload = body if body
+      sleep 0.1 unless payload
+    end
+
     expect(payload).to include("\"event\":\"order.created\"")
   ensure
     channel&.close

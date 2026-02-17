@@ -1,4 +1,4 @@
-import "./globals.css";
+import "./globals.scss";
 import { Space_Grotesk, Fraunces } from "next/font/google";
 
 const space = Space_Grotesk({ subsets: ["latin"], variable: "--font-sans" });

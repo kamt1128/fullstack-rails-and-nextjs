@@ -1,92 +1,70 @@
 "use client";
 
 import { useState } from "react";
-
-type Order = {
-  id: number;
-  customer_id: number;
-  customer_name?: string;
-  customer_address?: string;
-  product_name: string;
-  quantity: number;
-  price: string;
-  status: string;
-  created_at: string;
-};
-
-type Meta = {
-  page: number;
-  per_page: number;
-  total: number;
-};
-
-const baseUrl = process.env.NEXT_PUBLIC_ORDER_API_URL ?? "http://localhost:3001";
+import useSWR from "swr";
+import { getOrders } from "../../lib/api";
 
 export default function OrdersClient() {
-  const [customerId, setCustomerId] = useState("1");
-  const [orders, setOrders] = useState<Order[]>([]);
-  const [meta, setMeta] = useState<Meta>({ page: 1, per_page: 20, total: 0 });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [customerIdInput, setCustomerIdInput] = useState("1");
+  const [queryCustomerId, setQueryCustomerId] = useState("");
+  const [page, setPage] = useState(1);
+  const [formError, setFormError] = useState("");
 
+  const { data, error, isValidating } = useSWR(
+    queryCustomerId ? ["orders", queryCustomerId, page] : null,
+    ([, customerId, currentPage]) => getOrders(String(customerId), Number(currentPage))
+  );
+
+  const orders = data?.data ?? [];
+  const meta = data?.meta ?? { page: 1, per_page: 20, total: 0 };
   const totalPages = Math.max(1, Math.ceil(meta.total / meta.per_page));
+  const isLoading = isValidating && !data;
+  const hasQuery = Boolean(queryCustomerId);
 
-  const loadOrders = async (page = 1) => {
-    if (!customerId.trim()) {
-      setError("Debes ingresar un customer_id.");
+  const handleSearch = () => {
+    if (!customerIdInput.trim()) {
+      setFormError("Debes ingresar un customer_id.");
       return;
     }
 
-    setLoading(true);
-    setError("");
-
-    try {
-      const url = new URL("/orders", baseUrl);
-      url.searchParams.set("customer_id", customerId);
-      url.searchParams.set("page", String(page));
-      url.searchParams.set("per_page", "20");
-
-      const response = await fetch(url.toString());
-      if (!response.ok) {
-        throw new Error("No se pudo cargar la lista de pedidos.");
-      }
-      const body = await response.json();
-      setOrders(body.data ?? []);
-      setMeta(body.meta ?? { page: 1, per_page: 20, total: 0 });
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Error inesperado.");
-    } finally {
-      setLoading(false);
-    }
+    setFormError("");
+    setQueryCustomerId(customerIdInput.trim());
+    setPage(1);
   };
 
   return (
-    <section className="card grid">
-      <div className="field">
-        <label htmlFor="customer">Customer ID</label>
+    <section className="panel stack orders">
+      <div className="form__field">
+        <label className="form__label" htmlFor="customer">
+          Customer ID
+        </label>
         <input
+          className="form__input"
           id="customer"
-          value={customerId}
-          onChange={(event) => setCustomerId(event.target.value)}
+          value={customerIdInput}
+          onChange={(event) => setCustomerIdInput(event.target.value)}
           placeholder="Ej: 1"
         />
       </div>
 
       <div className="nav">
         <button
-          className="button primary"
-          onClick={() => loadOrders(1)}
-          disabled={loading}
+          className="button button--primary"
+          onClick={handleSearch}
+          disabled={isLoading}
         >
-          {loading ? "Cargando..." : "Buscar pedidos"}
+          {isLoading ? "Cargando..." : "Buscar pedidos"}
         </button>
       </div>
 
-      {error ? <p className="muted">{error}</p> : null}
+      {formError ? <p className="u-muted">{formError}</p> : null}
+      {error ? <p className="u-muted">{error.message}</p> : null}
 
-      {orders.length > 0 ? (
+      {!hasQuery ? (
+        <p className="u-muted">Ingresa un customer_id y presiona buscar.</p>
+      ) : orders.length > 0 ? (
         <>
-          <table className="table">
+          <table className="orders__table">
             <thead>
               <tr>
                 <th>ID</th>
@@ -106,11 +84,11 @@ export default function OrdersClient() {
                   <td>{order.quantity}</td>
                   <td>${order.price}</td>
                   <td>
-                    <span className="status">{order.status}</span>
+                    <span className="orders__status">{order.status}</span>
                   </td>
                   <td>
                     <div>{order.customer_name ?? "-"}</div>
-                    <div className="muted">{order.customer_address ?? ""}</div>
+                    <div className="u-muted">{order.customer_address ?? ""}</div>
                   </td>
                   <td>{new Date(order.created_at).toLocaleString()}</td>
                 </tr>
@@ -118,28 +96,28 @@ export default function OrdersClient() {
             </tbody>
           </table>
 
-          <div className="pagination">
+          <div className="pager">
             <button
               className="button"
-              onClick={() => loadOrders(Math.max(1, meta.page - 1))}
-              disabled={loading || meta.page <= 1}
+              onClick={() => setPage(Math.max(1, meta.page - 1))}
+              disabled={isLoading || meta.page <= 1}
             >
               Anterior
             </button>
-            <span className="muted">
+            <span className="u-muted">
               Página {meta.page} de {totalPages}
             </span>
             <button
               className="button"
-              onClick={() => loadOrders(Math.min(totalPages, meta.page + 1))}
-              disabled={loading || meta.page >= totalPages}
+              onClick={() => setPage(Math.min(totalPages, meta.page + 1))}
+              disabled={isLoading || meta.page >= totalPages}
             >
               Siguiente
             </button>
           </div>
         </>
       ) : (
-        <p className="muted">
+        <p className="u-muted">
           No hay pedidos para este cliente todavía. Crea uno nuevo para verlo
           aquí.
         </p>

@@ -56,4 +56,6 @@ group :development, :test do
 
   # RSpec for tests
   gem "rspec-rails", "~> 6.1"
+  gem "webmock", "~> 3.24"
+  gem "bunny-mock", "~> 1.7"
 end

@@ -1,39 +1,32 @@
 require "rails_helper"
+require "webmock/rspec"
 
 RSpec.describe "Customer Service integration", type: :request do
-  before(:all) do
-    @port = 55_00 + rand(500)
-    @server = WEBrick::HTTPServer.new(
-      Port: @port,
-      Logger: WEBrick::Log.new(File::NULL),
-      AccessLog: []
-    )
+  before do
+    ENV["CUSTOMER_SERVICE_URL"] = "http://customers.test"
 
-    @server.mount_proc "/customers/1" do |_req, res|
-      res.status = 200
-      res["Content-Type"] = "application/json"
-      res.body = {
-        id: 1,
-        customer_name: "Test Customer",
-        address: "Test Address",
-        orders_count: 0
-      }.to_json
-    end
+    stub_request(:get, "http://customers.test/customers/1")
+      .to_return(
+        status: 200,
+        headers: { "Content-Type" => "application/json" },
+        body: {
+          id: 1,
+          customer_name: "Test Customer",
+          address: "Test Address",
+          orders_count: 0
+        }.to_json
+      )
 
-    @server.mount_proc "/customers/999" do |_req, res|
-      res.status = 404
-      res["Content-Type"] = "application/json"
-      res.body = { error: "Customer not found" }.to_json
-    end
-
-    @thread = Thread.new { @server.start }
-    ENV["CUSTOMER_SERVICE_URL"] = "http://localhost:#{@port}"
+    stub_request(:get, "http://customers.test/customers/999")
+      .to_return(
+        status: 404,
+        headers: { "Content-Type" => "application/json" },
+        body: { error: "Customer not found" }.to_json
+      )
   end
 
-  after(:all) do
+  after do
     ENV.delete("CUSTOMER_SERVICE_URL")
-    @server&.shutdown
-    @thread&.join
   end
 
   it "creates an order using customer data from the customer service" do

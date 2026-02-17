@@ -10,7 +10,9 @@ yarn-error.log*
 
 # Rails / Ruby
 .bundle/
+**/.bundle/
 vendor/bundle/
+**/vendor/bundle/
 log/
 tmp/
 storage/

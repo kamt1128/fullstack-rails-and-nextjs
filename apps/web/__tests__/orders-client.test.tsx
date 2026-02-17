@@ -1,5 +1,6 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import OrdersClient from "../app/orders/orders-client";
+import { SWRConfig } from "swr";
 
 describe("OrdersClient", () => {
   beforeEach(() => {
@@ -13,12 +14,19 @@ describe("OrdersClient", () => {
   });
 
   it("loads orders when clicking search", async () => {
-    render(<OrdersClient />);
+    render(
+      <SWRConfig value={{ provider: () => new Map() }}>
+        <OrdersClient />
+      </SWRConfig>
+    );
 
     fireEvent.click(screen.getByRole("button", { name: /buscar pedidos/i }));
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalled();
+      expect(global.fetch).toHaveBeenCalledWith(
+        "http://localhost:3001/orders?customer_id=1&page=1&per_page=20",
+        expect.any(Object)
+      );
     });
   });
 });

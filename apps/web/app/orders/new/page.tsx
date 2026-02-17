@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-
-const baseUrl = process.env.NEXT_PUBLIC_ORDER_API_URL ?? "http://localhost:3001";
+import { createOrder } from "../../../lib/api";
 
 type FormState = {
   customer_id: string;
@@ -35,24 +34,13 @@ export default function NewOrderPage() {
     setError("");
 
     try {
-      const response = await fetch(`${baseUrl}/orders`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          order: {
-            customer_id: Number(form.customer_id),
-            product_name: form.product_name,
-            quantity: Number(form.quantity),
-            price: Number(form.price),
-            status: form.status
-          }
-        })
+      await createOrder({
+        customer_id: Number(form.customer_id),
+        product_name: form.product_name,
+        quantity: Number(form.quantity),
+        price: Number(form.price),
+        status: form.status
       });
-
-      if (!response.ok) {
-        const body = await response.json().catch(() => ({}));
-        throw new Error(body.error || "No se pudo crear el pedido.");
-      }
 
       setMessage("Pedido creado y evento publicado.");
       setForm((prev) => ({ ...prev, product_name: "", price: "" }));
@@ -64,10 +52,10 @@ export default function NewOrderPage() {
   };
 
   return (
-    <div className="page">
+    <div className="layout">
       <section className="hero">
-        <h1>Crear pedido</h1>
-        <p>
+        <h1 className="hero__title">Crear pedido</h1>
+        <p className="hero__text">
           Envía un nuevo pedido al Order Service. El servicio consultará al
           Customer Service para completar los datos del cliente y publicará el
           evento en RabbitMQ.
@@ -82,26 +70,35 @@ export default function NewOrderPage() {
         </div>
       </section>
 
-      <section className="card grid">
-        <div className="field">
-          <label htmlFor="customer">Customer ID</label>
+      <section className="panel form">
+        <div className="form__field">
+          <label className="form__label" htmlFor="customer">
+            Customer ID
+          </label>
           <input
+            className="form__input"
             id="customer"
             value={form.customer_id}
             onChange={(event) => updateField("customer_id", event.target.value)}
           />
         </div>
-        <div className="field">
-          <label htmlFor="product">Producto</label>
+        <div className="form__field">
+          <label className="form__label" htmlFor="product">
+            Producto
+          </label>
           <input
+            className="form__input"
             id="product"
             value={form.product_name}
             onChange={(event) => updateField("product_name", event.target.value)}
           />
         </div>
-        <div className="field">
-          <label htmlFor="quantity">Cantidad</label>
+        <div className="form__field">
+          <label className="form__label" htmlFor="quantity">
+            Cantidad
+          </label>
           <input
+            className="form__input"
             id="quantity"
             type="number"
             min="1"
@@ -109,9 +106,12 @@ export default function NewOrderPage() {
             onChange={(event) => updateField("quantity", event.target.value)}
           />
         </div>
-        <div className="field">
-          <label htmlFor="price">Precio</label>
+        <div className="form__field">
+          <label className="form__label" htmlFor="price">
+            Precio
+          </label>
           <input
+            className="form__input"
             id="price"
             type="number"
             min="0"
@@ -120,9 +120,12 @@ export default function NewOrderPage() {
             onChange={(event) => updateField("price", event.target.value)}
           />
         </div>
-        <div className="field">
-          <label htmlFor="status">Estado</label>
+        <div className="form__field">
+          <label className="form__label" htmlFor="status">
+            Estado
+          </label>
           <select
+            className="form__select"
             id="status"
             value={form.status}
             onChange={(event) => updateField("status", event.target.value)}
@@ -135,13 +138,17 @@ export default function NewOrderPage() {
         </div>
 
         <div className="nav">
-          <button className="button primary" onClick={submit} disabled={loading}>
+          <button
+            className="button button--primary"
+            onClick={submit}
+            disabled={loading}
+          >
             {loading ? "Enviando..." : "Crear pedido"}
           </button>
         </div>
 
-        {message ? <p className="muted">{message}</p> : null}
-        {error ? <p className="muted">{error}</p> : null}
+        {message ? <p className="u-muted">{message}</p> : null}
+        {error ? <p className="u-muted">{error}</p> : null}
       </section>
     </div>
   );

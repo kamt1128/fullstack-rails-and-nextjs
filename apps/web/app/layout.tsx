@@ -5,8 +5,11 @@ const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-sans"
 const fraunces = Fraunces({ subsets: ["latin"], variable: "--font-serif" });
 
 export const metadata = {
-  title: "Order Console",
-  description: "Gestión de pedidos conectada a microservicios Rails"
+  title: "Gestor de Ordenes",
+  description: "Gestión de pedidos conectada a microservicios Rails",
+  icons: {
+    icon: "/favicon.ico"
+  }
 };
 
 export default function RootLayout({
@@ -41,3 +44,4 @@ export default function RootLayout({
     </html>
   );
 }
+

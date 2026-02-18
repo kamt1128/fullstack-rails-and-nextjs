@@ -10,7 +10,7 @@ export default function Home() {
         <div className="hero__inner">
           <div className="hero__top">
             <div className="hero__brand">
-              <h1 className="hero__title">Order Console</h1>
+              <h1 className="hero__title">Gestor de Ordenes</h1>
               <p className="hero__subtitle">
                 Panel ligero para consultar y crear pedidos en el Order Service,
                 con datos de clientes enriquecidos desde Customer Service.

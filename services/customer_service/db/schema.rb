@@ -15,10 +15,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_16_130500) do
   enable_extension "pg_catalog.plpgsql"
 
   create_table "customers", force: :cascade do |t|
-    t.string "address", null: false
-    t.datetime "created_at", null: false
     t.string "customer_name", null: false
+    t.string "address", null: false
     t.integer "orders_count", default: 0, null: false
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 end
